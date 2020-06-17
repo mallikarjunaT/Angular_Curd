@@ -1,0 +1,155 @@
+<div class="container" style="margin-top: 20px;">
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="container">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        <span style="font-size: 24px;
+            font-weight: 700;">Contact </span> <u><a (click)="add()" style="margin-left: 50px;
+    font-size: 15px;cursor: pointer;">Add Conatact</a></u><br><br>
+                        <form>
+                            <div class="form-group">
+                                <input type="text" class="form-control" #name (keyup)="filterfn(name.value)" placeholder="search name" required />
+                            </div>
+                        </form>
+
+                    </div>
+                    <ul class="list-group list-group-flush" *ngFor="let obj of data">
+                        <li class="list-group-item">{{obj.firstname|lowercase }}
+
+                            <span style="font-size:20px; float: right;cursor: pointer;" (click)="delete(obj)" data-toggle="modal" data-target="#myModal" class="material-icons">&#xe92b;</span>
+                            <span (click)="edit(obj)" style="font-size:20px;cursor: pointer; float: right; margin-right: 9px !important;" class="fa">&#xf040;</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6" *ngIf="addform">
+            <h4>Add Contact</h4>
+
+            <div class="container">
+                <form class="example-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                    <mat-label>First name</mat-label>
+                    <mat-form-field class="example-full-width">
+
+                        <input matInput formControlName="firstname">
+                    </mat-form-field>
+                    <br><br>
+                    <mat-label>Last name</mat-label>
+                    <mat-form-field class="example-full-width">
+
+                        <input matInput formControlName="lastname">
+
+                    </mat-form-field>
+                    <br><br>
+                    <mat-label>Company</mat-label>
+                    <mat-form-field class="example-full-width">
+
+                        <input matInput formControlName="company">
+
+                    </mat-form-field>
+                    <br><br>
+                    <mat-label>Email</mat-label>
+                    <mat-form-field class="example-full-width">
+
+                        <input matInput formControlName="email">
+
+                    </mat-form-field>
+                    <br><br>
+                    <mat-label>Primary</mat-label>
+                    <mat-form-field class="example-full-width">
+
+                        <input matInput formControlName="primary">
+
+                    </mat-form-field>
+                    <br><br>
+                    <mat-label>Alternate</mat-label>
+                    <mat-form-field class="example-full-width">
+
+                        <input matInput formControlName="alternate">
+
+                    </mat-form-field><br><br>
+                    <div class="example-button-row">
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-6" *ngIf="editform">
+            <h4>Edit Contact</h4>
+
+            <div class="container">
+                <form class="example-form" [formGroup]="registerForm" (ngSubmit)="cancel()">
+                    <mat-label>First name</mat-label>
+                    <mat-form-field class="example-full-width">
+
+                        <input matInput formControlName="firstname">
+                    </mat-form-field>
+                    <br><br>
+                    <mat-label>Last name</mat-label>
+                    <mat-form-field class="example-full-width">
+
+                        <input matInput formControlName="lastname">
+
+                    </mat-form-field>
+                    <br><br>
+                    <mat-label>Company</mat-label>
+                    <mat-form-field class="example-full-width">
+
+                        <input matInput formControlName="company">
+
+                    </mat-form-field>
+                    <br><br>
+                    <mat-label>Email</mat-label>
+                    <mat-form-field class="example-full-width">
+
+                        <input matInput formControlName="email">
+
+                    </mat-form-field>
+                    <br><br>
+                    <mat-label>Primary</mat-label>
+                    <mat-form-field class="example-full-width">
+
+                        <input matInput formControlName="primary">
+
+                    </mat-form-field>
+                    <br><br>
+                    <mat-label>Alternate</mat-label>
+                    <mat-form-field class="example-full-width">
+
+                        <input matInput formControlName="alternate">
+
+                    </mat-form-field><br><br>
+                    <div class="example-button-row">
+                        <button type="submit">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Do you want delete this contact?</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+
+                <button type="submit" class="btn btn-danger" (click)="confirmation()" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+            </div>
+
+        </div>
+    </div>
+</div>
